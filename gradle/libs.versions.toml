@@ -1,0 +1,114 @@
+[versions]
+kotlin = "2.1.20"
+compose-multiplatform = "1.8.0"
+
+# Android
+agp = "8.9.2"
+android-compileSdk = "35"
+android-minSdk = "24"
+android-targetSdk = "34"
+
+# Android X
+androidx-activity-compose  = "1.10.1"
+androidx-appcompat = "1.7.0"
+androidx-lifecycle = "2.8.4"
+
+# KotlinX
+kotlinx-json-serialization = "1.8.1"
+kotlinx-datetime = "0.6.2"
+kotlinx-coroutines = "1.10.2"
+
+# Ktor
+exposed-version = "0.61.0"
+h2-version = "2.3.232"
+ktor-version = "3.1.2"
+logback-version = "1.5.18"
+
+# Spring
+spring-boot = "3.4.5"
+spring-dependency-management = "1.1.7"
+reactor = "3.7.5"
+
+[libraries]
+# Ktor
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+
+# Android
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
+
+# AndroidX
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+
+# Compose
+androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+
+# KotlinX
+json-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-json-serialization" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+
+# Ktor server
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor-version" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor-version" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor-version" }
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor-version" }
+ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor-version" }
+
+# Database
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed-version" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed-version" }
+h2 = { module = "com.h2database:h2", version.ref = "h2-version" }
+
+# Logging
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-version" }
+
+# Ktor client
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-version" }
+
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-version" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor-version" }
+ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor-version" }
+
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-version" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
+
+# Spring
+spring-boot-starter-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+kotlinx-coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-reactor", version.ref = "kotlinx-coroutines" }
+
+# Reactor
+reactor-core = { group = "io.projectreactor", name = "reactor-core", version.ref = "reactor" }
+reactor-test = { group = "io.projectreactor", name = "reactor-test", version.ref = "reactor" }
+
+[plugins]
+#Android
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+# Compose
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+# Kotlin
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android" }
+
+# Ktor
+ktor = { id = "io.ktor.plugin", version.ref = "ktor-version" }
+
+# Spring
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+spring-core = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+spring-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
