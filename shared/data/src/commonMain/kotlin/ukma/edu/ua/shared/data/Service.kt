@@ -19,7 +19,7 @@ public interface ITodoService {
 public class TodoClientApi(private val httpClient: HttpClient) : ITodoService {
     override suspend fun create(createTodo: CreateTodo): Todo {
         return httpClient.post("/todos") {
-           setBody(createTodo)
+            setBody(createTodo)
         }.body()
     }
 

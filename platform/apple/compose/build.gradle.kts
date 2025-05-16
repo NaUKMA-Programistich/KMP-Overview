@@ -104,7 +104,7 @@ var hostArch = when (osArch) {
     else -> error("Unsupported arch: $osArch")
 }
 
-val host = "${hostOs}-${hostArch}"
+val host = "$hostOs-$hostArch"
 
 val target = sdkName.orEmpty().let {
     when {

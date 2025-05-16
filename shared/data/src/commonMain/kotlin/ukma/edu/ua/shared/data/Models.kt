@@ -1,8 +1,8 @@
 package ukma.edu.ua.shared.data
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.datetime.Instant
 
 @Serializable
 public data class Todo(
@@ -24,4 +24,3 @@ public data class UpdateTodo(
     @SerialName("title") val title: String,
     @SerialName("completed") val completed: Boolean
 )
-

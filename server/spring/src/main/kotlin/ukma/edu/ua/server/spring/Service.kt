@@ -14,7 +14,7 @@ import kotlin.jvm.optionals.getOrNull
 @Service
 class TodoService(
     private val database: TodoDatabase
-): ITodoService {
+) : ITodoService {
 
     private fun TodoEntity.toTodo(): Todo = Todo(
         id = this.id,

@@ -1,11 +1,11 @@
 package ukma.edu.ua.server.spring
 
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.stereotype.Repository
 import jakarta.persistence.*
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 import ukma.edu.ua.shared.data.DatabaseConfig
 import java.time.Instant
 import javax.sql.DataSource
@@ -18,7 +18,7 @@ data class TodoEntity(
     @Column(name = "ID", nullable = false)
     val id: Int = 0,
 
-    @Column(name  = "TITLE", nullable = false, length = 150)
+    @Column(name = "TITLE", nullable = false, length = 150)
     var title: String,
 
     @Column(name = "COMPLETED", nullable = false)
@@ -32,7 +32,7 @@ data class TodoEntity(
 )
 
 @Repository
-interface TodoDatabase: JpaRepository<TodoEntity, Int>
+interface TodoDatabase : JpaRepository<TodoEntity, Int>
 
 @Configuration
 class DataSourceConfig {

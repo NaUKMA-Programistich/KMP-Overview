@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
 
@@ -15,6 +16,7 @@ plugins {
     alias(libs.plugins.spring.dependency.management) apply false
     alias(libs.plugins.spring.core) apply false
     alias(libs.plugins.spring.jpa) apply false
+    alias(libs.plugins.detekt)
 }
 
 allprojects {
@@ -32,4 +34,39 @@ allprojects {
             freeCompilerArgs.add("-opt-in=kotlinx.cinterop.BetaInteropApi")
         }
     }
+}
+
+tasks.register<Detekt>("detektFormat") {
+    autoCorrect = true
+}
+
+tasks.withType<Detekt>().configureEach {
+    jvmTarget = "1.8"
+    outputs.upToDateWhen { false }
+
+    parallel = true
+    buildUponDefaultConfig = true
+    allRules = true
+
+    setSource(files(projectDir))
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+
+    include("**/*.kt", "**/*.kts")
+    exclude(
+        "**/resources/**",
+        "**/res/**",
+        "**/build/**",
+    )
+
+    reports {
+        html.required.set(true)
+        xml.required.set(false)
+        txt.required.set(false)
+    }
+}
+
+dependencies {
+    detektPlugins(libs.detekt.ruleset.compiler)
+    detektPlugins(libs.detekt.ruleset.ktlint)
+    detektPlugins(libs.detekt.ruleset.compose)
 }

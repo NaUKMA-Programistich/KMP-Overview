@@ -4,13 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import ukma.edu.ua.shared.data.Todo
 
-public class TodoViewModel: ViewModel() {
+public class TodoViewModel : ViewModel() {
 
     private val stateFlow = MutableStateFlow<TodoUIState>(TodoUIState.Loading)
     public val state: WrappedStateFlow<TodoUIState> = WrappedStateFlow(stateFlow.asStateFlow())
@@ -56,7 +55,7 @@ public class TodoViewModel: ViewModel() {
                     stateFlow.emit(TodoUIState.Success(todos))
                 }
                 .onFailure { error ->
-                    print("Error: ${error}")
+                    print("Error: $error")
                     stateFlow.emit(TodoUIState.Error(error.message ?: "Unknown error"))
                 }
         }
@@ -69,7 +68,7 @@ public class TodoViewModel: ViewModel() {
             simulateNetworkDelay()
 
             TodoUseCases.Create().invoke(title, completed)
-                .onSuccess { todo  ->
+                .onSuccess { todo ->
                     stateFlow.emit(TodoUIState.Success(currentTodos + todo))
                 }
                 .onFailure { error ->

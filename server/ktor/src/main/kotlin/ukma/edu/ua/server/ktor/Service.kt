@@ -22,7 +22,7 @@ import ukma.edu.ua.shared.data.Todo
 import ukma.edu.ua.shared.data.UpdateTodo
 import java.sql.Timestamp
 
-class TodoService(database: Database): ITodoService {
+class TodoService(database: Database) : ITodoService {
     object Todos : Table() {
         val id = integer("id").autoIncrement()
         val title = varchar("title", length = 150)
@@ -62,13 +62,15 @@ class TodoService(database: Database): ITodoService {
     override suspend fun readAll(): List<Todo> {
         return dbQuery {
             Todos.selectAll()
-                .map { Todo(
-                    id = it[Todos.id],
-                    title = it[Todos.title],
-                    completed = it[Todos.completed],
-                    created = it[Todos.created],
-                    updated = it[Todos.updated]
-                ) }
+                .map {
+                    Todo(
+                        id = it[Todos.id],
+                        title = it[Todos.title],
+                        completed = it[Todos.completed],
+                        created = it[Todos.created],
+                        updated = it[Todos.updated]
+                    )
+                }
         }
     }
 
@@ -76,13 +78,15 @@ class TodoService(database: Database): ITodoService {
         return dbQuery {
             Todos.selectAll()
                 .where { Todos.id eq id }
-                .map { Todo(
-                    id = id,
-                    title = it[Todos.title],
-                    completed = it[Todos.completed],
-                    created = it[Todos.created],
-                    updated = it[Todos.updated]
-                ) }
+                .map {
+                    Todo(
+                        id = id,
+                        title = it[Todos.title],
+                        completed = it[Todos.completed],
+                        created = it[Todos.created],
+                        updated = it[Todos.updated]
+                    )
+                }
                 .singleOrNull()
         }
     }
@@ -118,7 +122,7 @@ class InstantColumnType : ColumnType<Instant>() {
     }
 
     override fun valueFromDB(value: Any): Instant = when (value) {
-        is Timestamp  -> value.toInstant().toKotlinInstant()
+        is Timestamp -> value.toInstant().toKotlinInstant()
         is java.time.Instant -> value.toKotlinInstant()
         is String -> Timestamp.valueOf(value).toInstant().toKotlinInstant()
         else -> error("Unexpected value of type ${value::class} for InstantColumnType: $value")

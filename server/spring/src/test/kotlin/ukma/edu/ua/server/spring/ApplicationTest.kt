@@ -20,7 +20,6 @@ import ukma.edu.ua.shared.data.CreateTodo
 import ukma.edu.ua.shared.data.Todo
 import ukma.edu.ua.shared.data.UpdateTodo
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 class ApplicationTest {
